@@ -1,0 +1,367 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+@import 'roboto-fontface/css/roboto/roboto-fontface.css';
+
+// Plus imports for other components in your app.
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$vangular-typography: mat.m2-define-typography-config(
+  $font-family: 'Roboto, sans-serif',
+  $body-1: mat.m2-define-typography-level(14px, 22px, 400),
+);
+
+@include mat.typography-hierarchy($vangular-typography);
+/* For use in src/lib/core/theming/_palette.scss */
+
+$vng-colors: (
+  50: #e6eaee,
+  100: #c1cbd5,
+  200: #97a9ba,
+  300: #6d869e,
+  400: #4e6c89,
+  500: #2f5274,
+  600: #2a4b6c,
+  700: #234161,
+  800: #1d3857,
+  900: #122844,
+  A100: #80b4ff,
+  A200: #4d96ff,
+  A400: #1a77ff,
+  A700: #0068ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$vng-red-palette: (
+  50: #fef2f2,
+  100: #fee2e2,
+  200: #fecaca,
+  300: #fca5a5,
+  400: #f87171,
+  500: #ef4444,
+  600: #dc2626,
+  700: #b91c1c,
+  800: #991b1b,
+  900: #7f1d1d,
+  950: #450a0a,
+  A100: #ff8a80,
+  A200: #ff5252,
+  A400: #ff1744,
+  A700: #d50000,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$vangular-primary: mat.m2-define-palette($vng-colors);
+$vangular-accent: mat.m2-define-palette($vng-colors, A200, A100, A400);
+$vangular-warn: mat.m2-define-palette($vng-red-palette, 600, 600, 600);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$vangular-theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $vangular-primary,
+      accent: $vangular-accent,
+      warn: $vangular-warn,
+    ),
+    typography: $vangular-typography,
+    density: 0,
+  )
+);
+
+.dense-3 {
+  @include mat.all-component-densities(-3);
+  .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined)
+    .mat-mdc-floating-label {
+    // hack fix for https://github.com/angular/components/issues/26579
+    display: inline !important;
+  }
+}
+
+.dense-3 {
+  --mat-expansion-header-expanded-state-height: 36px;
+  &.mdc-list-item.mdc-list-item--with-one-line {
+    height: unset;
+  }
+}
+
+.dense-4 {
+  --mat-expansion-header-expanded-state-height: 36px;
+  @include mat.all-component-densities(-4);
+  .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined)
+    .mat-mdc-floating-label {
+    // hack fix for https://github.com/angular/components/issues/26579
+    display: inline !important;
+  }
+  &.mdc-list-item.mdc-list-item--with-one-line {
+    height: unset;
+  }
+}
+
+.dense-5 {
+  --mat-expansion-header-expanded-state-height: 36px;
+  @include mat.all-component-densities(-5);
+  .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined)
+    .mat-mdc-floating-label {
+    // hack fix for https://github.com/angular/components/issues/26579
+    display: inline !important;
+  }
+  &.mdc-list-item.mdc-list-item--with-one-line {
+    height: unset;
+  }
+}
+
+.dense-6 {
+  --mat-expansion-header-expanded-state-height: 36px;
+  @include mat.all-component-densities(-6);
+  .mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined)
+    .mat-mdc-floating-label {
+    // hack fix for https://github.com/angular/components/issues/26579
+    display: inline !important;
+  }
+  &.mdc-list-item.mdc-list-item--with-one-line {
+    height: unset;
+  }
+}
+
+.dense-2 {
+  @include mat.all-component-densities(-2);
+}
+
+$highcontrast-theme-primary: mat.m2-define-palette(
+  mat.$m2-deep-purple-palette,
+  900,
+  900,
+  900
+);
+$highcontrast-theme-accent: mat.m2-define-palette(
+  mat.$m2-deep-orange-palette,
+  900,
+  900,
+  900
+);
+$highcontrast-theme-warn: mat.m2-define-palette(
+  mat.$m2-red-palette,
+  900,
+  900,
+  900
+);
+
+$highcontrast-theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $highcontrast-theme-primary,
+      accent: $highcontrast-theme-accent,
+      warn: $highcontrast-theme-warn,
+    ),
+    typography: mat.m2-define-typography-config(),
+    density: 0,
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($vangular-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  background-color: #fff;
+}
+
+.scrollable {
+  overflow-y: auto;
+  overflow-x: auto;
+  mix-blend-mode: normal;
+
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: #e0e0e0;
+
+    &:hover {
+      background: #e0e0e0;
+      cursor: pointer;
+    }
+  }
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #e0e0e0;
+
+  &:hover {
+    background: #e0e0e0;
+    cursor: pointer;
+  }
+}
+
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+@font-face {
+  font-display: swap;
+}
+
+.hide-mat-arrows {
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+
+.tox-promotion,
+.tox-statusbar__branding {
+  display: none;
+}
+
+stickynoteschartitem ul {
+  list-style: initial;
+  padding-left: revert;
+}
+
+.custom-textarea-resize {
+  &::-webkit-resizer {
+    background-color: transparent;
+    background-image:
+      linear-gradient(
+        to bottom right,
+        var(--color-gray-500) 0,
+        var(--color-gray-500) 2px,
+        transparent 4px
+      ),
+      linear-gradient(
+        to bottom right,
+        var(--color-gray-500) 0,
+        var(--color-gray-500) 2px,
+        transparent 4px
+      ),
+      linear-gradient(
+        to bottom right,
+        var(--color-gray-500) 0,
+        var(--color-gray-500) 2px,
+        transparent 4px
+      ),
+      linear-gradient(
+        to bottom right,
+        var(--color-gray-500),
+        var(--color-gray-500) 2px,
+        transparent 4px
+      ),
+      linear-gradient(
+        to bottom right,
+        var(--color-gray-500) 0,
+        var(--color-gray-500) 2px,
+        transparent 4px
+      ),
+      linear-gradient(
+        to bottom right,
+        var(--color-gray-500) 0,
+        var(--color-gray-500) 2px,
+        transparent 4px
+      );
+    background-position:
+      right 1px bottom 1px,
+      right 1px bottom 5px,
+      right 5px bottom 5px,
+      right 5px bottom 1px,
+      right 9px bottom 1px,
+      right 1px bottom 9px;
+    background-repeat: no-repeat;
+    background-size: 2px 2px;
+    border: none;
+    width: 12px;
+    height: 12px;
+  }
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-track {
+    width: 12px;
+  }
+}
+
+.linebreak-tooltip {
+  white-space: pre-line;
+}
+
+/* for snackbar service */
+
+.mat-mdc-snack-bar-container.red-snackbar .mdc-snackbar__surface {
+  background: #d50000;
+}
+
+.mat-mdc-snack-bar-container.green-snackbar .mdc-snackbar__surface {
+  background: #388e3c;
+}
+
+.mat-mdc-snack-bar-container.blue-snackbar .mdc-snackbar__surface {
+  background: #29b6f6;
+}
+
+.cdk-overlay-pane:has(.mat-mdc-select-panel.full-width-dropdown) {
+  min-width: fit-content;
+}
+
+:root {
+  --color-tooltip: #4b5563;
+}

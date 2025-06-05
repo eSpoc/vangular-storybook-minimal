@@ -1,0 +1,70 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "projects": {
+    "vangular": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "inlineStyle": true,
+          "inlineTemplate": true,
+          "standalone": true,
+          "changeDetection": "OnPush"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "vng",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "progress": false,
+            "outputPath": "dist/vangular",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "stylePreprocessorOptions": {
+              "includePaths": ["./node_modules"]
+            },
+            "assets": [
+              {
+                "glob": "mdi.svg",
+                "input": "./node_modules/@mdi/angular-material",
+                "output": "assets/fonts/"
+              }
+            ],
+            "styles": [
+              "src/vangular-tailwind.css",
+              "src/styles.scss",
+              "src/material-fixes.css",
+              "src/date-time-picker-fixes.css"
+            ]
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "vangular:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "1d7b0141-4661-44e8-acce-a0c085eb327a",
+    "cache": {
+      "enabled": true
+    },
+    "packageManager": "pnpm",
+    "schematicCollections": ["@angular-eslint/schematics"]
+  }
+}

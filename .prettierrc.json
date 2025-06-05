@@ -1,0 +1,29 @@
+{
+  "bracketSameLine": true,
+  "printWidth": 80,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "semi": true,
+  "plugins": [
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-organize-attributes",
+    "prettier-plugin-tailwindcss",
+    "prettier-plugin-sql",
+    "prettier-plugin-embed"
+  ],
+  "language": "plsql",
+  "keywordCase": "lower",
+  "identifierCase": "upper",
+  "linesBetweenQueries": 0,
+  "overrides": [
+    {
+      "files": ["*.json"],
+      "options": {
+        "parser": "json5",
+        "quoteProps": "preserve",
+        "singleQuote": false,
+        "trailingComma": "none"
+      }
+    }
+  ]
+}
