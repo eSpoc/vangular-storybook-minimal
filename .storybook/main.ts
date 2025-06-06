@@ -1,15 +1,13 @@
 import { resolve } from 'path';
-import serveStatic from 'serve-static';
 import { UserConfig } from 'vite';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const config = {
   stories: ['../src/**/*.stories.ts'],
   addons: [
     '@storybook/addon-links',
-    'storybook-addon-mock',
-    'storybook-addon-mock-date',
+    // 'storybook-addon-mock',
+    // 'storybook-addon-mock-date',
     '@storybook/addon-docs',
   ],
   framework: {
@@ -46,13 +44,12 @@ const config = {
           enableNgcc: true,
         }),
       },
+      resolve: {
+        mainFields: ['browser', 'module', 'main'],
+      },
+      sourcemap: false,
       optimizeDeps: {
-        include: [
-          '@storybook/angular',
-          '@angular/compiler',
-          '@storybook/addon-docs/blocks',
-          'tslib',
-        ],
+        include: ['@angular/compiler', 'tslib'],
       },
       build: {
         sourceMapsEnabled: false,
