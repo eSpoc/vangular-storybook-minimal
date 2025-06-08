@@ -4,5 +4,5 @@
 2. `pnpm storybook`
 
 
-And then note the console error.
+And then note the console errors regarding the `missing assets/images/icons/critical_priority.svg`.
 
