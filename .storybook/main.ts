@@ -36,8 +36,15 @@ const config = {
     const { default: angular } = await import('@analogjs/vite-plugin-angular');
     const tailwindcss = await import('@tailwindcss/postcss');
     const autoprefixer = await import('autoprefixer');
+    const assetsPath = resolve(__dirname, '../src/assets');
 
     return mergeConfig(config, {
+      publicDir: resolve(__dirname, '../src/assets'),
+      resolve: {
+        alias: {
+          assets: resolve(__dirname, '../src/assets'),
+        },
+      },
       define: {
         STORYBOOK_ANGULAR_OPTIONS: JSON.stringify({
           enableIvy: true,
@@ -60,6 +67,25 @@ const config = {
       plugins: [
         tsconfigPaths(),
         angular({ jit: true, tsconfig: './.storybook/tsconfig.json' }),
+        viteStaticCopy({
+          targets: [
+            {
+              src: resolve(__dirname, '../src/assets/*'), // Source path
+              dest: 'assets', // Destination relative to storybook-static
+            },
+          ],
+        }),
+        {
+          name: 'custom-assets-middleware',
+          configureServer(server) {
+            server.middlewares.use(
+              '/assets',
+              serveStatic(assetsPath, {
+                index: false,
+              })
+            );
+          },
+        },
       ],
       css: {
         postcss: {
