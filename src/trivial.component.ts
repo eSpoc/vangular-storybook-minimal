@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
 import { LocalSvgIcon } from './LocalSvgIcon';
 
 @Component({
@@ -11,7 +10,7 @@ import { LocalSvgIcon } from './LocalSvgIcon';
     <LocalSvgIcon path="assets/images/icons/critical_priority.svg" />
   </p> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatIcon, LocalSvgIcon],
+  imports: [LocalSvgIcon],
 })
 export class TrivialComponent {}
 
